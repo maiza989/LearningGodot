@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpbps5x0vuqcv"]
+
+[ext_resource type="Texture2D" uid="uid://cj0r8w2damaxo" path="res://resources/graphics/player/player.png" id="1_7yf5c"]
+[ext_resource type="Script" path="res://Scenes/player/player.gd" id="1_x828j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nmcj3"]
+radius = 57.1402
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_x828j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_7yf5c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-45, -1)
+shape = SubResource("CircleShape2D_nmcj3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.6, 0.6)
+
+[node name="lazerReloadTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="grenadeReloadTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="lazerSpawnPosition" type="Node2D" parent="."]
+
+[node name="1" type="Marker2D" parent="lazerSpawnPosition"]
+position = Vector2(96, 18)
+
+[node name="2" type="Marker2D" parent="lazerSpawnPosition"]
+position = Vector2(94, 23)
+
+[node name="3" type="Marker2D" parent="lazerSpawnPosition"]
+position = Vector2(93, 13)
+
+[connection signal="timeout" from="lazerReloadTimer" to="." method="_on_lazer_reload_timer_timeout"]
+[connection signal="timeout" from="grenadeReloadTimer" to="." method="_on_grenade_reload_timer_timeout"]

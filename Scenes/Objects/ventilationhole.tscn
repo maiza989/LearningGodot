@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmgp6ymio8q8p"]
+
+[ext_resource type="Texture2D" uid="uid://kk1p2ynniyq7" path="res://resources/graphics/objects/ventilation_hole.png" id="1_5yld7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lxhl1"]
+radius = 88.2327
+
+[node name="ventilationhole" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5yld7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lxhl1")

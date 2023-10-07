@@ -18,13 +18,16 @@ func _on_player_lazer(pos, direction):
 	lazer.rotation_degrees = rad_to_deg(direction.angle()) + 90
 	lazer.direction = direction
 	# move lazer done in lazer script
-
-	# add lazer instance to saparate node
+	# add lazer instance to private/separate node
 	$Projectiles.add_child(lazer)
 	
+	
 func _on_player_grenade(pos, direction):
+	# creating grenade instance
 	var grenade = grenade_scene.instantiate() as RigidBody2D
+	# making grenade postion to be at the player gun 
 	grenade.position = pos
 	grenade.linear_velocity = direction * grenade.speed 
+	#add grenade instance to a private/separate node 
 	$Projectiles.add_child(grenade)
 

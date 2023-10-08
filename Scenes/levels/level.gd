@@ -20,7 +20,7 @@ func _on_player_lazer(pos, direction):
 	# move lazer done in lazer script
 	# add lazer instance to private/separate node
 	$Projectiles.add_child(lazer)
-	
+	# test 
 	
 func _on_player_grenade(pos, direction):
 	# creating grenade instance

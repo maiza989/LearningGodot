@@ -8,6 +8,8 @@
 size = Vector2(632, 378)
 
 [node name="bed" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 1)

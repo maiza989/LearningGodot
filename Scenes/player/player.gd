@@ -18,6 +18,8 @@ func _process(_delta):
 	
 	# primary attack
 	if Input.is_action_pressed("primary action") and can_lazer:
+		#emit particles
+		$LazerParticles.emitting = true
 		# select a random marker 2d to spawn a lazer from 
 		var lazer_markers = $lazerSpawnPosition.get_children()
 		var selected_lazer = lazer_markers[randi() % lazer_markers.size()]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlovr6sjya66v"]
+[gd_scene load_steps=9 format=3 uid="uid://dlovr6sjya66v"]
 
 [ext_resource type="PackedScene" uid="uid://cpbps5x0vuqcv" path="res://Scenes/player/player.tscn" id="1_b6hkm"]
 [ext_resource type="Script" path="res://Scenes/levels/level.gd" id="1_nbxee"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://djlji2eaavi7y" path="res://Scenes/enemies/gate.tscn" id="3_22hr4"]
 [ext_resource type="TileSet" uid="uid://doiev7txqjvs5" path="res://Scenes/levels/level.tres" id="4_1t7jc"]
 [ext_resource type="PackedScene" uid="uid://c6h6lawl41py5" path="res://Scenes/Objects/house.tscn" id="5_4ddg5"]
+[ext_resource type="PackedScene" uid="uid://dmgp6ymio8q8p" path="res://Scenes/Objects/ventilationhole.tscn" id="6_skj3w"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_nbxee")
@@ -41,6 +42,9 @@ layer_1/tile_data = PackedInt32Array(-65542, 65536, 0, -65543, 65536, 0, -65544,
 position = Vector2(1019, 3524)
 rotation = -1.91463
 
+[node name="ventilationhole" parent="Ground" instance=ExtResource("6_skj3w")]
+position = Vector2(-695, 273)
+
 [node name="gate" parent="." instance=ExtResource("3_22hr4")]
 position = Vector2(-75, -950)
 scale = Vector2(1.2, 1.2)
@@ -48,6 +52,7 @@ scale = Vector2(1.2, 1.2)
 [node name="Projectiles" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_b6hkm")]
+position = Vector2(-79, 206)
 
 [connection signal="gate_body_entered" from="gate" to="." method="_on_gate_gate_body_entered"]
 [connection signal="gate_body_exited" from="gate" to="." method="_on_gate_gate_body_exited"]

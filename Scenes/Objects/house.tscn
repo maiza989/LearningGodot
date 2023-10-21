@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6h6lawl41py5"]
+[gd_scene load_steps=7 format=3 uid="uid://c6h6lawl41py5"]
 
 [ext_resource type="TileSet" uid="uid://doiev7txqjvs5" path="res://Scenes/levels/level.tres" id="1_70lkx"]
+[ext_resource type="Script" path="res://Scenes/Objects/house.gd" id="1_l4qmm"]
 [ext_resource type="PackedScene" uid="uid://cnmpb3kvhuwa0" path="res://Scenes/Objects/small_light.tscn" id="2_vc3a1"]
 [ext_resource type="PackedScene" uid="uid://c8qnjtdvgwgkp" path="res://Scenes/Objects/large_light.tscn" id="3_xbr0y"]
+[ext_resource type="PackedScene" uid="uid://dgwjhajb371s7" path="res://Scenes/Objects/fan_light_animation.tscn" id="4_ba8pq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd16v"]
 size = Vector2(2857, 2489)
@@ -10,6 +12,7 @@ size = Vector2(2857, 2489)
 [node name="House" type="Area2D"]
 collision_layer = 4
 collision_mask = 11
+script = ExtResource("1_l4qmm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(389.5, 1370.5)
@@ -60,3 +63,10 @@ rotation = 3.14159
 [node name="LargeLight" parent="Lights" instance=ExtResource("3_xbr0y")]
 position = Vector2(1680, 1324)
 rotation = -1.5708
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="FanLightAnimation" parent="Objects" instance=ExtResource("4_ba8pq")]
+position = Vector2(780, 1176)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

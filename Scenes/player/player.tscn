@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpbps5x0vuqcv"]
+[gd_scene load_steps=9 format=3 uid="uid://cpbps5x0vuqcv"]
 
 [ext_resource type="Texture2D" uid="uid://cj0r8w2damaxo" path="res://resources/graphics/player/player.png" id="1_7yf5c"]
 [ext_resource type="Script" path="res://Scenes/player/player.gd" id="1_x828j"]
@@ -29,6 +29,9 @@ scale_max = 0.4
 color = Color(0.662745, 1, 1, 0.698039)
 color_ramp = SubResource("GradientTexture1D_2kku5")
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_x3lb5"]
+polygon = PackedVector2Array(87, 1, 75, 1, 72, -4, 61, -5, 52, -11, 39, -10, 25, -24, 22, -27, 13, -28, 7, -37, 8, -40, -1, -49, -8, -59, -15, -62, -26, -59, -38, -60, -48, -57, -59, -55, -65, -51, -79, -46, -89, -38, -97, -20, -96, -2, -93, 12, -89, 14, -88, 17, -89, 21, -87, 28, -81, 32, -79, 37, -75, 45, -72, 52, -64, 58, -49, 60, -29, 55, -18, 49, -13, 46, 2, 42, 6, 39, 8, 40, 26, 41, 21, 45, 22, 51, 25, 53, 57, 52, 62, 43, 72, 35, 81, 37, 92, 31, 96, 24, 96, 17, 94, 9, 91, 6, 85, 9, 86, 6)
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 30
 script = ExtResource("1_x828j")
@@ -45,14 +48,6 @@ shape = SubResource("CircleShape2D_nmcj3")
 zoom = Vector2(0.6, 0.6)
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
-
-[node name="lazerReloadTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
-[node name="grenadeReloadTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
 
 [node name="lazerSpawnPosition" type="Node2D" parent="."]
 
@@ -74,5 +69,20 @@ texture = ExtResource("3_3b5t1")
 lifetime = 0.2
 one_shot = true
 
-[connection signal="timeout" from="lazerReloadTimer" to="." method="_on_lazer_reload_timer_timeout"]
-[connection signal="timeout" from="grenadeReloadTimer" to="." method="_on_grenade_reload_timer_timeout"]
+[node name="Timers" type="Node" parent="."]
+
+[node name="lazerReloadTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="grenadeReloadTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Light" type="Node2D" parent="."]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Light"]
+occluder = SubResource("OccluderPolygon2D_x3lb5")
+
+[connection signal="timeout" from="Timers/lazerReloadTimer" to="." method="_on_lazer_reload_timer_timeout"]
+[connection signal="timeout" from="Timers/grenadeReloadTimer" to="." method="_on_grenade_reload_timer_timeout"]

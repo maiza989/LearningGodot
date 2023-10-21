@@ -24,14 +24,14 @@ func _process(_delta):
 		var lazer_markers = $lazerSpawnPosition.get_children()
 		var selected_lazer = lazer_markers[randi() % lazer_markers.size()]
 		can_lazer = false
-		$lazerReloadTimer.start()
+		$Timers/lazerReloadTimer.start()
 		#emit postion of lazer
 		lazer.emit(selected_lazer.global_position, player_direction)
 		
 	# secondary attack
 	if Input.is_action_pressed("secondary action") and can_grenade:
 		can_grenade = false
-		$grenadeReloadTimer.start()
+		$Timers/grenadeReloadTimer.start()
 		# setting grenade position to marker2d gloabl position/on the gun
 		var grenade_marker_pos = $lazerSpawnPosition.get_children()[0].global_position
 		grenade.emit(grenade_marker_pos, player_direction)

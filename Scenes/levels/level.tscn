@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlovr6sjya66v"]
+[gd_scene load_steps=10 format=3 uid="uid://dlovr6sjya66v"]
 
 [ext_resource type="PackedScene" uid="uid://cpbps5x0vuqcv" path="res://Scenes/player/player.tscn" id="1_b6hkm"]
 [ext_resource type="Script" path="res://Scenes/levels/level.gd" id="1_nbxee"]
@@ -8,6 +8,7 @@
 [ext_resource type="TileSet" uid="uid://doiev7txqjvs5" path="res://Scenes/levels/level.tres" id="4_1t7jc"]
 [ext_resource type="PackedScene" uid="uid://c6h6lawl41py5" path="res://Scenes/Objects/house.tscn" id="5_4ddg5"]
 [ext_resource type="PackedScene" uid="uid://dmgp6ymio8q8p" path="res://Scenes/Objects/ventilationhole.tscn" id="6_skj3w"]
+[ext_resource type="PackedScene" uid="uid://bwa8ivfkprmwc" path="res://Scenes/enemies/drone.tscn" id="9_ca5g3"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_nbxee")
@@ -54,6 +55,13 @@ scale = Vector2(1.2, 1.2)
 [node name="Player" parent="." instance=ExtResource("1_b6hkm")]
 position = Vector2(-79, 206)
 
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="drone" parent="Enemies" instance=ExtResource("9_ca5g3")]
+position = Vector2(-359, 530)
+
+[connection signal="_on_house_entered" from="Ground/House" to="." method="_on_house__on_house_entered"]
+[connection signal="_on_house_exited" from="Ground/House" to="." method="_on_house__on_house_exited"]
 [connection signal="gate_body_entered" from="gate" to="." method="_on_gate_gate_body_entered"]
 [connection signal="gate_body_exited" from="gate" to="." method="_on_gate_gate_body_exited"]
 [connection signal="grenade" from="Player" to="." method="_on_player_grenade"]

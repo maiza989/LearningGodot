@@ -206,7 +206,7 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_41ejv")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.049043
+frame_progress = 0.657343
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(0.755, 0.635)

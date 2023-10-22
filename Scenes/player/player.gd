@@ -40,7 +40,10 @@ func _process(_delta):
 		grenade.emit(grenade_marker_pos, player_direction)
 		
 
+# A timer method that set the %can_lazer% variable to true after certain time so player can attack after cooldown
 func _on_lazer_reload_timer_timeout():
 	can_lazer = true
+	
+# A timer method that set the %can_grenade% variable to true after certain time so player can attack after cooldown
 func _on_grenade_reload_timer_timeout():
 	can_grenade = true
